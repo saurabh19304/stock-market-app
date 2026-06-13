@@ -1,8 +1,16 @@
 import React from 'react'
+import {NAV_ITEMS} from "@/lib/constants";
+import Link from "next/link";
 
 const NavItems = () => {
     return (
-        <div>NavItems</div>
+       <ul className="flex flex-col sm:flex-col p-2 gap-3 sm:gap-10 font-medium ">
+           {NAV_ITEMS.map(( {href , title }) => (
+               <li key={href}>
+                   <Link href={href} className={`hover:text-yellow-500 transition-colors ${ isActive(href) ? "text-gray-100" : ""}`}  ></Link>
+               </li>
+           ))}
+       </ul>
     )
 }
 export default NavItems
