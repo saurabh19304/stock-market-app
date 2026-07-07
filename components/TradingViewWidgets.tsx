@@ -1,9 +1,14 @@
 // TradingViewWidget.jsx
 'use client'
-import React, { useEffect, useRef, memo } from 'react';
+import React, {useRef, memo } from 'react';
+import useTradingViewWidgets from "@/components/Hooks/UseTradingViewWidgets";
 
-function TradingViewWidget() {
-    const container = useRef(null);
+interface TradingViewWidgetProps {
+    title?: string;
+}
+
+function TradingViewWidget({title, scriptUrl, config, height = 600,classname}) {
+    const container = useTradingViewWidgets(null);
 
     useEffect(
         () => {
@@ -11,31 +16,7 @@ function TradingViewWidget() {
             script.src = "https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js";
             script.type = "text/javascript";
             script.async = true;
-            script.innerHTML = `
-        {
-          "allow_symbol_change": true,
-          "calendar": false,
-          "details": false,
-          "hide_side_toolbar": true,
-          "hide_top_toolbar": false,
-          "hide_legend": false,
-          "hide_volume": false,
-          "hotlist": false,
-          "interval": "D",
-          "locale": "en",
-          "save_image": true,
-          "style": "1",
-          "symbol": "NASDAQ:AAPL",
-          "theme": "dark",
-          "timezone": "Etc/UTC",
-          "backgroundColor": "#0F0F0F",
-          "gridColor": "rgba(242, 242, 242, 0.06)",
-          "watchlist": [],
-          "withdateranges": false,
-          "compareSymbols": [],
-          "studies": [],
-          "autosize": true
-        }`;
+            script.innerHTML = ``;
             container.current.appendChild(script);
         },
         []
